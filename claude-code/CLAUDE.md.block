@@ -1,0 +1,44 @@
+<!-- martin-global:start (gestionado por claude-global/install; editar en el kit y reinstalar) -->
+# Flujo de trabajo global — Martin Gomez
+
+Aplica a todos los repos. El `CLAUDE.md` del proyecto manda sobre esto cuando choquen.
+
+## 1. Orden de trabajo (organigrama de skills)
+
+Mapa completo: skill `flujo-trabajo` (`~/.claude/skills/flujo-trabajo/references/INDEX.md`). Del por qué al cómo:
+
+1. **Negocio** → `ceo-business` (problema, métricas, por qué ahora).
+2. **Requerimientos** → `ama` antes de planificar cualquier iniciativa ambigua (7 áreas, nada asumido); `user-experience` para sacar backlog del código existente.
+3. **Producto** → `pm-product` (user stories, Given/When/Then, MVP).
+4. **Diseño** → `design-ux` cuando hay UI.
+5. **Desarrollo** → `hexagonal-architecture`, `java-coding-standards`, `java-springboot`, `api-design`, `error-handling`, `sql-oracle`, `database-migrations`, `etl-patterns`, `security-jwt`, `docker-compose`, `testing-strategy`, `java-docs`.
+6. **Arquitectura** → `system-architecture`, `oracle-architecture`, `cloud-architecture`.
+7. **Calidad y cierre** → `owasp-audit` antes de exponer algo; `/commit` para commitear.
+
+Las skills que nombran Fehub describen esa plataforma: en otros repos se toman los patrones, no los datos (puertos, módulos, datasources).
+
+## 2. Contexto del código — grafo primero, grep después
+
+- Si existe `graphify-out/`, consultar el grafo (`graphify-out/GRAPH_REPORT.md` y la skill `graphify`) **antes** de grepear o leer archivos sueltos.
+- Repo sin grafo: `/graphify .` una vez y `graphify hook install` para que se actualice en cada commit/checkout. Tras `git pull`: `graphify update .`.
+- Repos con `.claude/docs/modules/`: el contexto de un módulo se pide al subagente `module-docs` ("dame contexto de X" / "refrescá la doc de X"); no cargar el código del módulo en el contexto principal.
+
+## 3. Código mínimo (ponytail)
+
+Antes de escribir código nuevo: reutilizar lo que ya existe en el repo, luego la librería estándar, luego lo nativo del framework/plataforma. Escribir código propio solo cuando nada de eso alcanza. Nunca recortar validaciones ni seguridad para ahorrar líneas.
+
+## 4. Git
+
+- Nunca commitear en `develop`, `main` ni `qa`; rama `<tipo>/<resumen-kebab>`.
+- Conventional Commits en inglés, sin clave Jira ni atribución de IA (ver `git-conventions` y `/commit`).
+- Nunca `--force`, `--amend` ni `--no-verify`. Preguntar antes de hacer push.
+
+## 5. Modo ligero (eficiencia de tokens)
+
+- **Lecturas dirigidas:** offset/limit y Grep acotado en vez de archivos completos.
+- **No releer:** si un archivo ya está en contexto, no volver a leerlo para "verificar".
+- **Delegar exploración:** búsquedas amplias van a un subagente Explore o a `module-docs`; vuelve solo la conclusión.
+- **Outputs filtrados:** comandos con salida larga se filtran en origen (head, --quiet).
+- **Respuestas proporcionales:** pregunta simple = respuesta corta.
+- **Sesión por tema:** al cambiar de tarea grande, sesión nueva. `/tokens` para diagnosticar consumo.
+<!-- martin-global:end -->

@@ -1,0 +1,11 @@
+{
+  "name": "flujo-trabajo",
+  "owner": { "name": "Martin Gomez" },
+  "plugins": [
+    {
+      "name": "flujo-martin",
+      "source": "./plugins/flujo-martin",
+      "description": "Organigrama de skills, estándares Java/Spring/Oracle, /commit, /tokens, OWASP, agente module-docs y hooks de estado del repo."
+    }
+  ]
+}

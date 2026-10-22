@@ -1,0 +1,7 @@
+{
+  "name": "flujo-martin",
+  "version": "0.1.0",
+  "description": "Flujo de trabajo de Martin Gomez: organigrama de skills (negocio → AMA → PM → diseño → desarrollo → arquitectura), estándares Java/Spring/Oracle, /commit, /tokens, auditoría OWASP, agente module-docs y hooks de estado del repo.",
+  "author": { "name": "Martin Gomez" },
+  "keywords": ["feduro", "fehub", "spring-boot", "oracle", "hexagonal", "workflow"]
+}
